@@ -1,0 +1,11 @@
+<odoo>
+    <data noupdate="1">
+        <record id="seq_reserva_order" model="ir.sequence">
+            <field name="name">Secuencia de Reserva</field>
+            <field name="code">reserva.order</field>
+            <field name="prefix">RES/%(year)s/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
