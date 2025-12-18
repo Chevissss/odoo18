@@ -1,0 +1,21 @@
+<odoo>
+    <menuitem id="menu_root_reserva" name="Canchas" web_icon="reserva_canchas,static/description/icon.png" sequence="10"/>
+
+    <menuitem id="menu_reserva_main" name="Operaciones" parent="menu_root_reserva" sequence="1"/>
+    <menuitem id="menu_config_main" name="Configuración" parent="menu_root_reserva" sequence="10" groups="group_reserva_manager"/>
+
+    <record id="action_cancha_list" model="ir.actions.act_window">
+        <field name="name">Canchas</field>
+        <field name="res_model">reserva.cancha</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_reserva_calendar" model="ir.actions.act_window">
+        <field name="name">Calendario de Reservas</field>
+        <field name="res_model">reserva.order</field>
+        <field name="view_mode">calendar,list,form</field>
+    </record>
+
+    <menuitem id="menu_cancha_item" parent="menu_config_main" action="action_cancha_list"/>
+    <menuitem id="menu_reserva_item" parent="menu_reserva_main" action="action_reserva_calendar"/>
+</odoo>

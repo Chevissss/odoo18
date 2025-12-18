@@ -1,0 +1,89 @@
+<odoo>
+    <template id="website_cancha_list" name="Nuestras Canchas">
+        <t t-call="website.layout">
+            <div class="container py-5">
+                <h2 class="text-center mb-4">Selecciona tu Cancha</h2>
+                <div class="row">
+                    <t t-foreach="canchas" t-as="c"/>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <span t-if="c.image_1920" t-field="c.image_1920" t-options="{'widget': 'image', 'class': 'card-img-top', 'style': 'height: 200px; object-fit: cover;'}"/>
+                            <div class="card-body">
+                                <h5 class="card-title" t-field="c.name"/>
+                                <p class="card-text text-muted" t-field="c.sport_type"/>
+                                <h6 class="text-primary font-weight-bold">
+                                    <span t-field="c.hourly_rate" t-options='{"widget": "monetary", "display_currency": c.currency_id}'/> / hora
+                                </h6>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <a t-attf-href="/reservas/cancha/#{c.id}" class="btn btn-primary btn-block w-100">Reservar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="website_reserva_form" name="Reservar">
+        <t t-call="website.layout">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card shadow">
+                            <div class="card-header bg-primary text-white">
+                                <h4 class="m-0">Reservar: <span t-field="cancha.name"/></h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="/reservas/submit" method="post">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="cancha_id" t-att-value="cancha.id"/>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Tu Nombre</label>
+                                        <input type="text" name="nombre" class="form-control" required="required" placeholder="Juan Pérez"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" name="email" class="form-control" required="required" placeholder="juan@ejemplo.com"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Fecha y Hora de Inicio</label>
+                                        <input type="datetime-local" name="start_date" class="form-control" required="required"/>
+                                        <small class="text-muted">La duración es de 1 hora.</small>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-success w-100 mt-3">Confirmar Reserva</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="website_success" name="Reserva Exitosa">
+        <t t-call="website.layout">
+            <div class="container py-5 text-center">
+                <div class="alert alert-success d-inline-block">
+                    <h1 class="display-4">¡Listo!</h1>
+                    <p class="lead">Tu reserva <strong t-field="reserva.name"/> ha sido confirmada.</p>
+                    <a href="/reservas" class="btn btn-outline-success mt-3">Volver al inicio</a>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="website_error" name="Error en Reserva">
+        <t t-call="website.layout">
+            <div class="container py-5 text-center">
+                <div class="alert alert-danger">
+                    <h3>Ocurrió un error</h3>
+                    <p t-esc="error_msg"/>
+                    <a href="/reservas" class="btn btn-secondary mt-3">Intentar de nuevo</a>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

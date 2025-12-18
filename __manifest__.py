@@ -1,0 +1,22 @@
+{
+    'name': 'Sistema de Reserva de Canchas',
+    'version': '18.0.1.0.0',
+    'summary': 'Gestión profesional de reservas deportivas',
+    'description': 'Módulo completo para gestión de canchas con backend y website.',
+    'category': 'Services/Sports',
+    'author': 'Tu Nombre',
+    'website': 'https://tudominio.com',
+    'license': 'LGPL-3',
+    'depends': ['base', 'mail', 'website'],
+    'data': [
+        'security/res_groups.xml',
+        'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
+        'views/cancha_views.xml',
+        'views/reserva_views.xml',
+        'views/website_templates.xml',
+        'views/menu_views.xml',
+    ],
+    'application': True,
+    'installable': True,
+}

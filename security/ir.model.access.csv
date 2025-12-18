@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_reserva_cancha_staff,cancha.staff,model_reserva_cancha,group_reserva_staff,1,1,1,0
+access_reserva_cancha_manager,cancha.manager,model_reserva_cancha,group_reserva_manager,1,1,1,1
+access_reserva_order_staff,order.staff,model_reserva_order,group_reserva_staff,1,1,1,0
+access_reserva_order_manager,order.manager,model_reserva_order,group_reserva_manager,1,1,1,1
+access_reserva_cancha_public,cancha.public,model_reserva_cancha,base.group_public,1,0,0,0
+access_reserva_order_public,order.public,model_reserva_order,base.group_public,1,0,1,0

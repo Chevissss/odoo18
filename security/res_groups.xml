@@ -1,0 +1,18 @@
+<odoo>
+    <record id="module_category_reserva" model="ir.module.category">
+        <field name="name">Reservas Deportivas</field>
+        <field name="sequence">15</field>
+    </record>
+
+    <record id="group_reserva_staff" model="res.groups">
+        <field name="name">Staff / Operador</field>
+        <field name="category_id" ref="module_category_reserva"/>
+    </record>
+
+    <record id="group_reserva_manager" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="module_category_reserva"/>
+        <field name="implied_ids" eval="[(4, ref('group_reserva_staff'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>
